@@ -6,10 +6,12 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import static com.badlogic.gdx.scenes.scene2d.InputEvent.Type.touchUp;
 
 
 public class LoginScreen extends ScreenAdapter {
@@ -42,12 +44,15 @@ public class LoginScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         batch = new SpriteBatch();
-        skin = new Skin(Gdx.files.internal("flatEarthFiles/flat-earth-ui.json"));
+        skin = new Skin(Gdx.files.internal("data/flatEarthFiles/flat-earth-ui.json"));
 
-
+        //flatEarthFiles/flat-earth-ui.json
         TextButton playButton = new TextButton("Play", skin);
         playButton.setPosition(300, 300);
         playButton.setSize(300, 60);
+
+        public void touchUp (InputEvent event, float x, float y, int pointer,int button)
+
 
         stage.addActor(playButton);
     }
