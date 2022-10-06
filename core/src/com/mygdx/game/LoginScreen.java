@@ -51,7 +51,7 @@ public class LoginScreen extends ScreenAdapter {
         playButton.setPosition(300, 300);
         playButton.setSize(300, 60);
 
-        public void touchUp (InputEvent event, float x, float y, int pointer,int button)
+        //public void touchUp (InputEvent event, float x, float y, int pointer,int button)
 
 
         stage.addActor(playButton);
