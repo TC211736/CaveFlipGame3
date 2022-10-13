@@ -101,7 +101,6 @@ public class TitleScreen extends ScreenAdapter {
         setExitButton();
         fontCreation();
         setBackground();
-        setViewport();
 
     }
 
