@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class SQLLink {
+
     public static void SQLTest() {
 
 //This gets the directory for this project, appends the name of the database file to it and sets it as the database location
@@ -59,6 +60,33 @@ public class SQLLink {
             System.out.println("Error in the SQL class: " + e);
 
         }
+
+    }
+
+    public static Statement declareSQL() {
+        String DatabaseLocation = System.getProperty("user.dir") + "\\ProjectManagment.accdb";
+
+        Statement stmt = null;
+        try {
+
+//sets up a connection to the database using the database location
+
+            Connection con = DriverManager.getConnection("jdbc:ucanaccess://" + DatabaseLocation, "", "");
+
+//forms a statement which is used to format the results from your SQL
+
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        } catch (Exception e) {
+
+            System.out.println("Error in the SQL class: " + e);
+
+        }
+        return stmt;
+    }
+    public static void insert() {
+        Statement stmt = declareSQL();
+        String value;
+        stmt.executeQuery("INSERT into 'UserInfo' (Username) Values (value)");
 
     }
 }
