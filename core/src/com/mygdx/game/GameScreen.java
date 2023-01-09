@@ -6,7 +6,11 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Polygon;
+
+import java.util.HashMap;
 
 public class GameScreen extends ScreenAdapter {
     MyGdxGame game;
@@ -17,14 +21,20 @@ public class GameScreen extends ScreenAdapter {
 
     OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
+    Spritebatch batch;
     float bottomLeftY = 0;
     float bottomLeftX = 0;
     float rectWidth;
     float rectHeight;
     float moveSpeed = 200;
 
+    HashMap<String, Obstacle> obstacleTypes = new HashMap<>();
+
     @Override
     public void show() {
+        obstacleTypes.put("big man", new Obstacle(new Texture(""), new Polygon(new float[]{0f, 1f, 2})));
+
+
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         camera.update();
@@ -68,6 +78,7 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1, 0, 0, 1);
         shapeRenderer.rect(bottomLeftX, bottomLeftY, rectWidth, rectHeight);
+        shapeRenderer.isDrawing(obstacleTypes.get("big man"));
         shapeRenderer.setColor(0, 1, 0, 1);
         shapeRenderer.rect(bottomLeftX + rectWidth, bottomLeftY, rectWidth, rectHeight);
         shapeRenderer.setColor(0, 0, 1, 1);

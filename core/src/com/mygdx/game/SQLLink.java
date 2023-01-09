@@ -86,7 +86,7 @@ public class SQLLink {
     public static void insert() {
         Statement stmt = declareSQL();
         String value;
-        stmt.executeQuery("INSERT into 'UserInfo' (Username) Values (value)");
+        //stmt.executeQuery("INSERT into 'UserInfo' (Username) Values (value)");
 
     }
 }

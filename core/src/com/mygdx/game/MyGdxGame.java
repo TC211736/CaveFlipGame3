@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MyGdxGame extends Game {
-	public SpriteBatch batch;
+	public static SpriteBatch batch;
 	public Viewport viewport;
 	public OrthographicCamera camera;
 
