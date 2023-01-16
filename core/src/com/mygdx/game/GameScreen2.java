@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -15,7 +16,7 @@ public class GameScreen2 extends ScreenAdapter {
     private OrthographicCamera camera;
     private Rectangle character;
     private Texture texture;
-
+    SpriteBatch batch;
     public GameScreen2(MyGdxGame game) {
         this.game = game;
     }
@@ -28,7 +29,7 @@ public class GameScreen2 extends ScreenAdapter {
         character = new Rectangle();
         character.x = (1920 / 2) - (64 / 2); //set character's position on screen
         character.y = 20;
-
+        batch = new SpriteBatch();
         character.height = 60; //set character's dimensions
         character.width = 20;
 
@@ -37,13 +38,12 @@ public class GameScreen2 extends ScreenAdapter {
 
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0.2f, 1); //clear the screen
-
         camera.update(); //update camera
 
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        game.batch.draw(texture, character.x, character.y);
-        game.batch.end();
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(texture, character.x, character.y);
+        batch.end();
 
         if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();

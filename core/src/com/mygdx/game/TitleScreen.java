@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,6 +20,7 @@ public class TitleScreen extends ScreenAdapter {
 
     MyGdxGame game;
     ShapeRenderer shape;
+    Viewport viewport;
     FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
     BitmapFont font12;
@@ -29,14 +32,14 @@ public class TitleScreen extends ScreenAdapter {
     Rectangle shopButton;
     Rectangle exitButton;
     Rectangle background;
-
+    SpriteBatch batch;
 
     public TitleScreen(MyGdxGame game) {
         this.game = game;
     }
 
     private void setViewport() {
-        game.viewport = new ScalingViewport(Scaling.none,1920,1080,game.camera);
+        viewport = new ScalingViewport(Scaling.none,1920,1080,game.camera);
         game.camera.setToOrtho(false, 1920, 1080);
     }
     private void fontCreation() {
@@ -85,6 +88,7 @@ public class TitleScreen extends ScreenAdapter {
 
     @Override
     public void show() {
+        batch = new SpriteBatch();
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keyCode) {
@@ -108,13 +112,13 @@ public class TitleScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0.25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.batch.begin();
-        game.batch.draw(backgroundImage, background.x, background.y);
-        game.batch.draw(playButtonImage, playButton.x, playButton.y);
-        game.batch.draw(shopButtonImage, shopButton.x, shopButton.y);
-        game.batch.draw(exitButtonImage, exitButton.x, exitButton.y);
-        font12.draw(game.batch, "CAVEFLIP", 450, 940);
-        game.batch.end();
+        batch.begin();
+        batch.draw(backgroundImage, background.x, background.y);
+        batch.draw(playButtonImage, playButton.x, playButton.y);
+        batch.draw(shopButtonImage, shopButton.x, shopButton.y);
+        batch.draw(exitButtonImage, exitButton.x, exitButton.y);
+        font12.draw(batch, "CAVEFLIP", 450, 940);
+        batch.end();
 
         if (Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);

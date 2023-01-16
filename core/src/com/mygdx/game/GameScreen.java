@@ -21,7 +21,6 @@ public class GameScreen extends ScreenAdapter {
 
     OrthographicCamera camera;
     private ShapeRenderer shapeRenderer;
-    Spritebatch batch;
     float bottomLeftY = 0;
     float bottomLeftX = 0;
     float rectWidth;
@@ -32,7 +31,7 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        obstacleTypes.put("big man", new Obstacle(new Texture(""), new Polygon(new float[]{0f, 1f, 2})));
+        obstacleTypes.put("big man", new Obstacle(new Texture("playButton.png"), new Polygon(new float[]{0f, 1f, 2f})));
 
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -78,7 +77,7 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(1, 0, 0, 1);
         shapeRenderer.rect(bottomLeftX, bottomLeftY, rectWidth, rectHeight);
-        shapeRenderer.isDrawing(obstacleTypes.get("big man"));
+        //shapeRenderer.polygon(obstacleTypes.get("big man").hitbox.getVertices());
         shapeRenderer.setColor(0, 1, 0, 1);
         shapeRenderer.rect(bottomLeftX + rectWidth, bottomLeftY, rectWidth, rectHeight);
         shapeRenderer.setColor(0, 0, 1, 1);
